@@ -61,7 +61,7 @@ fn main() {
     // custom targets, which can have arbitrary names.
     let llvm_target = {
         let mut triple = target.triple.split('-').collect::<Vec<_>>();
-        if target.os = "popcorn" { triple.pop(); }
+        if target.os == "popcorn" { triple.pop(); }
         triple
     };
 
