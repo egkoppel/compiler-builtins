@@ -59,7 +59,11 @@ fn main() {
     // NOTE we are going to assume that llvm-target, what determines our codegen option, matches the
     // target triple. This is usually correct for our built-in targets but can break in presence of
     // custom targets, which can have arbitrary names.
-    let llvm_target = target.triple.split('-').collect::<Vec<_>>();
+    let llvm_target = {
+        let mut triple = target.triple.split('-').collect::<Vec<_>>();
+        if target.os = "popcorn" { triple.pop(); }
+        triple
+    };
 
     // Build missing intrinsics from compiler-rt C source code. If we're
     // mangling names though we assume that we're also in test mode so we don't
